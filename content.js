@@ -35,8 +35,11 @@ function replaceBackgroundImages() {
   }
 }
 
- setInterval(replaceImages, 500);
- setInterval(replaceBackgroundImages, 5000);
-replaceImages();
-replaceBackgroundImages();
-
+chrome.storage.local.get(["catify_disabled"], function(storage) {
+  if(!storage.catify_disabled) {
+    setInterval(replaceImages, 500);
+    setInterval(replaceBackgroundImages, 5000);
+    replaceImages();
+    replaceBackgroundImages();
+  }
+});
